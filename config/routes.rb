@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users, only: [:new,:create]  #newアクションに登録フォームを表示させる。
+  #view/newのform_withを使用する場合createアクションのルーティングが必要になる
 end
