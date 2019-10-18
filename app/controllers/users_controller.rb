@@ -6,11 +6,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-    #  redirect #保存が成功した場合の処理
+    if @user.save  #userはshowアク
+      redirect_to user_path(@user.id)# redirect_to #保存が成功した場合の処理   詳細ページにidを持たせる
     else
       render 'new'
-    end  
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   private
