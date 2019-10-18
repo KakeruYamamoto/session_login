@@ -4,8 +4,8 @@ class User < ApplicationRecord
             format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
             # uniqueness: true
   before_validation { email.downcase! } #強制的に小文字に変える。
-  has_secure_password
-  #このメソッドはパスワードをハッシュ化する。そしてその変換したものをDBのpassword_digestというカラムに保存する。
+  has_secure_password#注意！カラムに_digestをつけないと使用できない
+  #has_secure_passwordメソッドはパスワードをハッシュ化する。そしてその変換したものをDBのpassword_digestというカラムに保存する。
   #そして、新たなめっソッドが使用できる。authenticate   #スペルミスにはきよつける
   validates :password, presence: true, length: { minimum: 6 }#空の値禁止、文字制限
   # validates :name, presence: true,length: {maxium: 30}

@@ -5,7 +5,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :email
       t.string :password_digest
-
+      #passwordを_digestをつけるとmodelでhas_secure_passwordが使用可能になる。
+      #has_secure_passwordが可能になると、パスワードとその確認ができるようになる。詳しくはmodelへ
       t.timestamps
     end
   end
