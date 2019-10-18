@@ -1,5 +1,18 @@
 <h1>Sign up</h1>
 
+
+<% if @user.errors.any? %>
+  <div id="error_explanation"><!-- このidの記述でrailsがデフォルトで用意されているエラー用のスタイル(css)を使用することができる -->
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+    <ul><!-- pluralizeの意味は？ -->
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <%= form_with(model: @user, local: true) do |f| %> <%# #view/newのform_withを使用する場合createアクションのルーティングが必要になる %>
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -15,3 +28,4 @@
 
   <%= f.submit "Create my account" %>
 <% end %>
+<!-- -->
