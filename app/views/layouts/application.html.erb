@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %><!--  フラッシュメッセージがあった場合表示する-->
+    <% flash.each do |key, value| %><!--  フラッシュメッセージがあった場合表示する  createアクション参照 -->
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <%= yield %>
