@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
 
   def create  #find_byはuserコントロラからemailを取得。下記参照。
     user = User.find_by(email: params[:session][:email].downcase)#find_byメソッドは条件を元にDBから該当するレコードを検索し、該当するものがあればそのレコードを返し、なければfalseを返す。
-    #authenticateメソ(オーセンティケーション)は引数の文字列がパスワードと一致するUserオブジェクトを返す。そうじゃなければfalseを返す
-    if user && user.authenticate(params[:session][:password])#modelでhas_secure_passwordメソを指定するとauthenticateメソが使用可能になる。
-      session[:user_id] = user_id
+    # authenticateメソ(オーセンティケイト)は引数の文字列がパスワードと一致するUserオブジェクトを返す。そうじゃなければfalseを返す
+    if user && user.authenticate(params[:session][:password])  #パスワードが一致しているか判定   #modelでhas_secure_passwordメソを指定するとauthenticateメソが使用可能になる。
+      session[:user_id] = user.id  #左辺はsessionメソッド  ユーザidが自動で生成されます。
       redirect_to user_path(user.id)
     else
-      flash.now[:danger] = 'ログインに失敗しました' # フラッシュメッセージを追加
+      flash[:danger] = 'ログインに失敗しました' # フラッシュメッセージを追加
       render 'new'
     end
   end
