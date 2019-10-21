@@ -21,7 +21,14 @@ ActiveRecord::Schema.define(version: 2019_10_17_080421) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true # 同じものを制限する。
   end
 
 end
+
+
+
+
+
+#データベースレベルでユニーク制約を設定して、これらの問題を解決していきます。
+#（モデルでチェックするバリデーションとは違い、データベースレベルで一意性をチェックすることで、トラフィックの量などに関係なく確実に値をチェックできます。）  ログインシステム４

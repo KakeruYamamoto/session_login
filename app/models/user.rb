@@ -1,8 +1,7 @@
 class User < ApplicationRecord
   validates :name,  presence: true, length: { maximum: 30 }# nameなどはテーブルカラム
   validates :email, presence: true, length: { maximum: 255 },
-            format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-            # uniqueness: true
+            format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i } , uniqueness: true  #コメントアウトにはきよつける
   before_validation { email.downcase! } #強制的に小文字に変える。
   has_secure_password#注意！カラムに_digestをつけないと使用できない
   #has_secure_passwordメソッドはパスワードをハッシュ化する。そしてその変換したものをDBのpassword_digestというカラムに保存する。
