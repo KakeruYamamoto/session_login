@@ -13,6 +13,16 @@
     <% flash.each do |key, value| %><!--  フラッシュメッセージがあった場合表示する  createアクション参照 -->
     <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
+
+    <% if logged_in? %>
+      <%= link_to "Profile", user_path(current_user.id) %>
+      <%= link_to "Logout", session_path(current_user.id), method: :delete %><%# # ログインしている場合 %>
+    <% else %>
+      <%= link_to "Sign up", new_user_path %>
+      <%= link_to "Login", new_session_path %><%# ログインしていない場合 まだ未実装 %>
+    <% end %>
+
+
     <%= yield %>
   </body>
 </html>
